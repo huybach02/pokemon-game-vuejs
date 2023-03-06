@@ -123,6 +123,9 @@ export default {
 }
 
 .isHide {
-    opacity: 0;
+    /* opacity: 0; */
+    transform: rotate(45deg) translateY(-300px);
+    filter: blur(80px);
+    transition: all 1s;
 }
 </style>
