@@ -1,8 +1,8 @@
 <template>
-    <div class="card" :class="{ disable: isDisable }" :style="{
+    <div class="card" :class="{ disable: isDisable, isHide: isHide }" :style="{
         height: `${(920 - 16 * 4) / Math.sqrt(cardsContext.length) - 16}px`,
         width: `${((920 - 16 * 4) / Math.sqrt(cardsContext.length) - 16 * 3 / 4)}px`
-    }" v-show="isHide">
+    }">
         <div class="card_inner" :class="{ 'is_flipped': isFlipped }" @click="onToggleFlipCard">
             <div class="card_face card_face-front">
                 <div class="card_content" :style="{
@@ -44,7 +44,7 @@ export default {
         return {
             isFlipped: false,
             isDisable: false,
-            isHide: true
+            isHide: false
         };
     },
     methods: {
@@ -60,7 +60,7 @@ export default {
         onDisableMode() {
             this.isDisable = true;
             setTimeout(() => {
-                this.isHide = false;
+                this.isHide = true;
             }, 1000);
         }
     }
@@ -120,5 +120,9 @@ export default {
     background-repeat: no-repeat;
     height: 100%;
 
+}
+
+.isHide {
+    opacity: 0;
 }
 </style>
