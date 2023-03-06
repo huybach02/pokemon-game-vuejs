@@ -1,9 +1,9 @@
 <template>
-    <div class="card" :class="{ disable: isDisable, isHide: isHide }" :style="{
+    <div class="card" :class="{ disable: isDisable }" :style="{
         height: `${(920 - 16 * 4) / Math.sqrt(cardsContext.length) - 16}px`,
         width: `${((920 - 16 * 4) / Math.sqrt(cardsContext.length) - 16 * 3 / 4)}px`
     }">
-        <div class="card_inner" :class="{ 'is_flipped': isFlipped }" @click="onToggleFlipCard">
+        <div class="card_inner" :class="{ 'is_flipped': isFlipped, isHide: isHide }" @click="onToggleFlipCard">
             <div class="card_face card_face-front">
                 <div class="card_content" :style="{
                     backgroundSize: `${((920 - 16 * 4) / Math.sqrt(cardsContext.length) - 16 * 3 / 4) / 3}px ${((920 - 16 * 4) / Math.sqrt(cardsContext.length) - 16 * 3 / 4) / 3}px`
