@@ -34,33 +34,38 @@ export default {
         checkRule(card) {
             if (this.rules.length === 2) return false;
             this.rules.push(card);
-            if (this.rules.length === 2 && this.rules[0].value === this.rules[1].value) {
-                console.log("right");
-                this.$refs[`card-${this.rules[0].index}`][0].onDisableMode();
-                this.$refs[`card-${this.rules[1].index}`][0].onDisableMode();
-                this.rules = [];
-
-                const disabledElements = document.querySelectorAll(".screen .card.disable");
-                if (disabledElements && disabledElements.length === this.cardsContext.length - 2) {
-                    setTimeout(() => {
-                        this.$emit("onFinish");
-                    }, 1000);
-                }
-
-
-            }
-            else if (this.rules.length === 2 && this.rules[0].value !== this.rules[1].value) {
-                console.log("Wrong");
-
-                setTimeout(() => {
-                    this.$refs[`card-${this.rules[0].index}`][0].onFlipBackCard();
-                    this.$refs[`card-${this.rules[1].index}`][0].onFlipBackCard();
+            if (this.rules[0].index != this.rules[1].index) {
+                if (this.rules.length === 2 && this.rules[0].value === this.rules[1].value) {
+                    console.log("right");
+                    this.$refs[`card-${this.rules[0].index}`][0].onDisableMode();
+                    this.$refs[`card-${this.rules[1].index}`][0].onDisableMode();
                     this.rules = [];
-                }, 1000);
+
+                    const disabledElements = document.querySelectorAll(".screen .card.disable");
+                    if (disabledElements && disabledElements.length === this.cardsContext.length - 2) {
+                        setTimeout(() => {
+                            this.$emit("onFinish");
+                        }, 1000);
+                    }
 
 
+                }
+                else if (this.rules.length === 2 && this.rules[0].value !== this.rules[1].value) {
+                    console.log("Wrong");
+
+                    setTimeout(() => {
+                        this.$refs[`card-${this.rules[0].index}`][0].onFlipBackCard();
+                        this.$refs[`card-${this.rules[1].index}`][0].onFlipBackCard();
+                        this.rules = [];
+                    }, 1000);
+
+
+                }
+                else return false;
             }
-            else return false;
+            else {
+                this.rules = [];
+            }
         }
     }
 };
